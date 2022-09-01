@@ -13,37 +13,50 @@ public class PlayerMovement : MonoBehaviour
     private float angle;
     public float moveSpeed;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-           
-    }
 
     // Update is called once per frame
     void Update()
     {
-        moveDir = touchField.joystickDir * touchField.distBetweenJoystickBodyToHandle;
+        moveDir = touchField.joystickDir.normalized * touchField.distBetweenJoystickBodyToHandle;
 
-        //print(touchField.joystickDir + " " + touchField.distBetweenJoystickBodyToHandle);
+        float nomalizeMoveSpeed = touchField.distBetweenJoystickBodyToHandle;
 
-        rigid.transform.Translate(new Vector3(moveDir.x, 0, moveDir.y) * moveSpeed * Time.deltaTime);
+        // print(touchField.joystickDir + " " + nomalizeMoveSpeed);
 
-        if(touchField.distBetweenJoystickBodyToHandle < .5f)
+        transform.Translate(new Vector3(moveDir.x, 0, moveDir.y) * moveSpeed * Time.deltaTime, Space.World);
+
+        if(nomalizeMoveSpeed == 0)
         {
-            animator.SetBool("Walk", true);
-            animator.SetBool("Run", false);
-
-        }
-        else if(touchField.distBetweenJoystickBodyToHandle > 0.5f)
-        {
-            animator.SetBool("Walk", false);
-            animator.SetBool("Run", true);
+            animator.SetBool("Moving", false);
         }
         else
         {
-            animator.SetBool("Walk", false);
-            animator.SetBool("Run", false);
+            animator.SetBool("Moving", true);
+            animator.SetFloat("MoveAnimationSpeed", nomalizeMoveSpeed);
         }
+
+        // if(nomalizeMoveSpeed == 0)
+        // {
+        //     animator.SetBool("Walk", false);
+        //     animator.SetBool("Run", false);
+        // }
+        // else if(nomalizeMoveSpeed < .8f)
+        // {
+        //     animator.SetBool("Walk", true);
+        //     animator.SetBool("Run", false);
+        // }
+        // else if(nomalizeMoveSpeed > 0.8f)
+        // {
+        //     animator.SetBool("Walk", false);
+        //     animator.SetBool("Run", true);
+        // }
+        // else
+        // {
+        //     animator.SetBool("Walk", false);
+        //     animator.SetBool("Run", false);
+        // }
+
+        
 
         if (Mathf.Abs(touchField.joystickDir.normalized.x) > 0 || Mathf.Abs(touchField.joystickDir.normalized.y) > 0)
         {
@@ -53,7 +66,11 @@ public class PlayerMovement : MonoBehaviour
             //isMoving = true;
         }
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.up), 1 * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.AngleAxis(angle - 90, Vector3.down), 10 * Time.deltaTime);
 
+    }
+
+    private void FixedUpdate() {
+        
     }
 }

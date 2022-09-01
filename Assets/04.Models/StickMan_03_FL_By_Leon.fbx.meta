@@ -84,7 +84,9 @@ ModelImporter:
   referencedClips:
   - 954baf11a5a954ab099bc6d0c84c4ff5
   - fa3bf4fc893af4cbc8928ed12b340064
+  - 2a07b53a2b6724bbd86930399594d8fa
   - 90e9ea613ec0240288db47519566e558
+  - 17c5b2f7e23e6459cb3225e94c9b9cf8
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -310,7 +312,7 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

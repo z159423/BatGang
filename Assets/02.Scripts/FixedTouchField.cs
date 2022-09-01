@@ -1,9 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [HideInInspector]
@@ -11,8 +8,8 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [HideInInspector]
     public Vector2 PointerOld;
     [HideInInspector]
-    protected int PointerId;
-    [HideInInspector]
+    //protected int PointerId;
+    //[HideInInspector]
     public bool Pressed;
 
     [SerializeField] private GameObject JoystickBody;
@@ -36,10 +33,10 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (Pressed)
         {
-            if (PointerId >= 0 && PointerId < Input.touches.Length)
-            {
-                TouchDist = Input.touches[PointerId].position - PointerOld;
-                PointerOld = Input.touches[PointerId].position;
+            //if (PointerId >= 0 && PointerId < Input.touches.Length)
+            //{
+                TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y)  - PointerOld;
+                //PointerOld = Input.touches[PointerId].position;
 
                 Vector2 pos;
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -75,12 +72,12 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 distBetweenJoystickBodyToHandle = joystickDist / clampDist;
 
 
-            }
-            else
-            {
-                TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
-                PointerOld = Input.mousePosition;
-            }
+            //}
+            //else
+            //{
+                //TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
+                //PointerOld = Input.mousePosition;
+            //}
         }
         else
         {
@@ -93,7 +90,7 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         Pressed = true;
-        PointerId = eventData.pointerId;
+        //PointerId = eventData.pointerId;
         PointerOld = eventData.position;
 
         Vector2 pos;
