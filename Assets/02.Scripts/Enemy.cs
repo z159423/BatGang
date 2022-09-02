@@ -49,9 +49,11 @@ public class Enemy : MonoBehaviour
     {
         animator.enabled = false;
 
-        rigidbodies = GetComponentsInChildren<Rigidbody>();
+        //rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-        var dir = (hipRigid.GetComponent<BoxCollider>().bounds.center - player).normalized + (Vector3.up * 0.5f);
+        //var dir = (hipRigid.GetComponent<BoxCollider>().bounds.center - player).normalized + (Vector3.up * 0.5f);
+
+        var dir = (new Vector3(hipRigid.GetComponent<BoxCollider>().bounds.center.x, 0, hipRigid.GetComponent<BoxCollider>().bounds.center.z) - new Vector3(player.x, 0, player.z)).normalized + (Vector3.up * 0.5f);
 
         for (int i = 0; i < rigidbodies.Length; i++)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -36,8 +37,14 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         animator.SetTrigger("Swing");
 
-        yield return new WaitForSeconds(0.3f);
+        yield return null;
 
         enemy.TakeDamage(1, bodyCollider.bounds.center, batSwingForce);
+
+        //Time.timeScale = 0.5f;
+        TimeScaler.instance.ChangeTimeScale(0.5f);
+
+        //Time.timeScale = 1f;
+
     }
 }
