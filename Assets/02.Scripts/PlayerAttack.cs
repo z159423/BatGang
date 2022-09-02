@@ -37,12 +37,12 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = true;
         animator.SetTrigger("Swing");
 
-        yield return null;
+        yield return new WaitForSecondsRealtime(0.3f);
 
         enemy.TakeDamage(1, bodyCollider.bounds.center, batSwingForce);
 
         //Time.timeScale = 0.5f;
-        TimeScaler.instance.ChangeTimeScale(0.5f);
+        TimeScaler.instance.ChangeTimeScale(0.25f);
 
         //Time.timeScale = 1f;
 
